@@ -95,6 +95,21 @@ class Card extends StatelessWidget {
                 ),
               ),
             ),
+            new Expanded(child: new Container()),
+            new Row(
+              children: <Widget>[
+                new Text(
+                  '2-3', 
+                  style: new TextStyle(
+                    color: Colors.white,
+                    fontSize: 140.0,
+                    fontFamily: 'petita',
+                    letterSpacing: -5.0,
+                  ),
+                ),
+              ],
+            ),
+            new Expanded(child: new Container()),
           ],
         ),
       ],
