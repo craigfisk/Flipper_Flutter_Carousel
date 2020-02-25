@@ -156,39 +156,42 @@ class Card extends StatelessWidget {
                   ),
                   color: Colors.black.withOpacity(0.3),
                 ),
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    new Text(
-                      'Mostly Cloudy',
-                      style: new TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'petita',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
-                        ),
-                    ),
-                    new Padding(
-                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      child: new Icon(
-                          Icons.wb_cloudy,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      new Text(
+                        'Mostly Cloudy',
+                        style: new TextStyle(
                           color: Colors.white,
+                          fontFamily: 'petita',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                          ),
                       ),
-                    ),
-                    new Text(
-                      '11.2mph ENE',
-                      style: new TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'petita',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
+                      new Padding(
+                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                        child: new Icon(
+                            Icons.wb_cloudy,
+                            color: Colors.white,
                         ),
                       ),
-                    ],
+                      new Text(
+                        '11.2mph ENE',
+                        style: new TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'petita',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                          ),
+                        ),
+                      ],
                     
+                    ),
                   ),
-                ),
+              ),
             ),
             ],
         ),
