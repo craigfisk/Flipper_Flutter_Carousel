@@ -97,9 +97,10 @@ class Card extends StatelessWidget {
             ),
             new Expanded(child: new Container()),
             new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 new Text(
-                  '2-3', 
+                  '2 - 3', 
                   style: new TextStyle(
                     color: Colors.white,
                     fontSize: 140.0,
