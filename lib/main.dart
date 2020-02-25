@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
       );
   }
 }
-
+// One hard-coded card to work out the layout.
 class Card extends StatelessWidget {
   @override 
   Widget build(BuildContext context) {
