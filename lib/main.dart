@@ -79,10 +79,21 @@ class Card extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        //new Column(
-        //  mainAxisAlignment: MainAxisAlignment.center,
-        //  children: <Widget>[],
-        //),
+        new Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            new Text( 
+              '10th Street'.toUpperCase(),
+              style: new TextStyle(
+                color: Colors.white, 
+                fontSize: 20.0, 
+                fontFamily: 'petita', 
+                fontWeight: FontWeight.bold, 
+                letterSpacing: 2.0,
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
