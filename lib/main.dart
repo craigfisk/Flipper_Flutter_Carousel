@@ -43,14 +43,15 @@ class _MyHomePageState extends State<MyHomePage> {
             width: double.infinity,
             height: 20.0,
           ),
+          
           // cards
           new Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: new Card(
-              ),
+              child: new CardFlipper(),
             ),
           ),
+          
           // bottom bar
           new Container(
             width: double.infinity,
@@ -62,6 +63,33 @@ class _MyHomePageState extends State<MyHomePage> {
       );
   }
 }
+
+class CardFlipper extends StatefulWidget{
+  @override 
+  _CardFlipperState createState() => new _CardFlipperState();
+}
+
+class _CardFlipperState extends State<CardFlipper> {
+
+  List<Widget> _buildCards() {
+    return [
+      _buildCard(0, 1, 0.0),
+    ];
+  }
+  // get the card index and count of cards
+  Widget _buildCard(int cardIndex, int cardCount, double scrollPercent) {
+      return new Card();
+  } 
+
+  @override 
+  Widget build(BuildContext context) {
+    return new Stack(
+      // will return a list of cards in a stack
+      children: _buildCards(),
+    );
+  }
+}
+
 // One hard-coded card to work out the layout.
 class Card extends StatelessWidget {
   @override 
