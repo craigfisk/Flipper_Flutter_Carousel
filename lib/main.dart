@@ -123,6 +123,24 @@ class Card extends StatelessWidget {
                 ),
               ],
             ),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Icon(
+                  Icons.wb_sunny,
+                  color: Colors.white,
+                ),
+                new Text(
+                  '65.1°',
+                  style: new TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'petita',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                  ),
+                ),
+              ],
+            ),
             new Expanded(child: new Container()),
           ],
         ),
