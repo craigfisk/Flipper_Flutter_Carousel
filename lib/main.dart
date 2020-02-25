@@ -98,6 +98,7 @@ class Card extends StatelessWidget {
             new Expanded(child: new Container()),
             new Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 new Text(
                   '2 - 3', 
@@ -107,6 +108,18 @@ class Card extends StatelessWidget {
                     fontFamily: 'petita',
                     letterSpacing: -5.0,
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 30.0),
+                    child: new Text( 
+                      'FT',
+                      style: new TextStyle(
+                        color: Colors.white,
+                        fontSize: 22.0,
+                        fontFamily: 'petita',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                 ),
               ],
             ),
