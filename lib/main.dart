@@ -82,14 +82,17 @@ class Card extends StatelessWidget {
         new Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            new Text( 
-              '10th Street'.toUpperCase(),
-              style: new TextStyle(
-                color: Colors.white, 
-                fontSize: 20.0, 
-                fontFamily: 'petita', 
-                fontWeight: FontWeight.bold, 
-                letterSpacing: 2.0,
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
+              child: new Text( 
+                '10th Street'.toUpperCase(),
+                style: new TextStyle(
+                  color: Colors.white, 
+                  fontSize: 20.0, 
+                  fontFamily: 'petita', 
+                  fontWeight: FontWeight.bold, 
+                  letterSpacing: 2.0,
+                ),
               ),
             ),
           ],
