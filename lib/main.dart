@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -29,6 +30,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      /*
+      appBar: AppBar(
+        title: Text('Ralph'),
+      ),
+      */
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -41,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
           new Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: new Container(),
+              child: new Card(
+              ),
             ),
           ),
           // bottom bar
@@ -53,5 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       );
+  }
+}
+
+class Card extends StatelessWidget {
+  @override 
+  Widget build(BuildContext context) {
+    return new Container();
   }
 }
