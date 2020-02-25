@@ -66,6 +66,24 @@ class _MyHomePageState extends State<MyHomePage> {
 class Card extends StatelessWidget {
   @override 
   Widget build(BuildContext context) {
-    return new Container();
+    return new Stack(
+      fit: StackFit.expand,
+      children: <Widget>[
+        // background
+        new ClipRRect(
+          borderRadius: new BorderRadius.circular(10.0),
+          child: new Image.asset(
+            //'assets/board_walk.jpg',
+            //'assets/dusk_waves.jpg',
+            'assets/van_on_beach.jpg',
+            fit: BoxFit.cover,
+          ),
+        ),
+        //new Column(
+        //  mainAxisAlignment: MainAxisAlignment.center,
+        //  children: <Widget>[],
+        //),
+      ],
+    );
   }
 }
