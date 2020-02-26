@@ -46,11 +46,11 @@ class _MyHomePageState extends State<MyHomePage> {
           
           // cards
           new Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+          //  child: Padding(
+          //    padding: const EdgeInsets.all(16.0),
               child: new CardFlipper(),
             ),
-          ),
+          //),
           
           // bottom bar
           new Container(
