@@ -70,25 +70,47 @@ class CardFlipper extends StatefulWidget{
 }
 
 class _CardFlipperState extends State<CardFlipper> {
+  // items to always be tracing:
+  double scrollPercent = 0.0;
+  Offset startDrag;
+  double startDragPercentScroll;
+  double finishScrollStart;
+  double finishScrollEnd;
+  AnimationController finishScrollController;
 
   void _onHorizontalDragStart(DragStartDetails details) {
     print('...starting horizontal drag...');
+    startDrag = details.globalPosition;
+    startDragPercentScroll = scrollPercent;
   }
 
   void _onHorizontalDragUpdate(DragUpdateDetails details) {
     print('...starting horizontal drag update drag...');
+    final currDrag = details.globalPosition;
+    final dragDistance = currDrag.dx - startDrag.dx;
+    final singleCardDragPercent = dragDistance / context.size.width;
+
+    final numCards = 3;
+    setState(() {
+      scrollPercent = (startDragPercentScroll + (-singleCardDragPercent / numCards)).clamp(0.0, 1.0 - (1/3));
+    });
   }
 
   void _onHorizontalDragEnd(DragEndDetails details) {
     print('...starting horizontal drag end...');
+    // TODO
+    setState(() {
+      startDrag = null;
+      startDragPercentScroll = null;
+    });
   }
 
   List<Widget> _buildCards() {
     return [
       // index, count, percentscrolled
-      _buildCard(0, 3, 0.0),
-      _buildCard(1, 3, 0.0),
-      _buildCard(2, 3, 0.0),
+      _buildCard(0, 3, scrollPercent),
+      _buildCard(1, 3, scrollPercent),
+      _buildCard(2, 3, scrollPercent),
     ];
   }
   // get the card index and count of cards
