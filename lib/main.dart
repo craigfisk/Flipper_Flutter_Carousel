@@ -70,16 +70,19 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+
 class CardFlipper extends StatefulWidget{
   final List<CardViewModel> cards;
-
-  CardFlipper({
-    this.cards;
-  });
-
-  @override 
-  _CardFlipperState createState() => new _CardFlipperState();
+  
+    CardFlipper({
+      this.cards
+    });
+  
+    @override 
+    _CardFlipperState createState() => new _CardFlipperState();
+  
 }
+
 
 class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin {
   // items to always be tracing:
@@ -126,7 +129,7 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
 
     final numCards = 3;
     setState(() {
-      scrollPercent = (startDragPercentScroll + (-singleCardDragPercent / wiget.cards.length)).clamp(0.0, 1.0 - (1/ widget.cards.length));
+      scrollPercent = (startDragPercentScroll + (-singleCardDragPercent / widget.cards.length)).clamp(0.0, 1.0 - (1/ widget.cards.length));
     });
   }
 
@@ -151,12 +154,18 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
 
   List<Widget> _buildCards() {
     final cardCount = widget.cards.length;
-    return [
-      // index, count, percentscrolled
-      _buildCard(0, cardCount, scrollPercent),
-      _buildCard(1, cardCount, scrollPercent),
-      _buildCard(2, cardCount, scrollPercent),
-    ];
+
+    int index = -1;
+    return widget.cards.map((CardViewModel viewModel) {
+      ++index;
+      return _buildCard(index, cardCount, scrollPercent);
+    }).toList();
+    // return [
+    //   // index, count, percentscrolled
+    //   _buildCard(0, cardCount, scrollPercent),
+    //   _buildCard(1, cardCount, scrollPercent),
+    //   _buildCard(2, cardCount, scrollPercent),
+    // ];
   }
   // get the card index and count of cards
   Widget _buildCard(int cardIndex, int cardCount, double scrollPercent) {
