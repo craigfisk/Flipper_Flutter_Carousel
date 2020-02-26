@@ -126,7 +126,7 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
 
     final numCards = 3;
     setState(() {
-      scrollPercent = (startDragPercentScroll + (-singleCardDragPercent / numCards)).clamp(0.0, 1.0 - (1/3));
+      scrollPercent = (startDragPercentScroll + (-singleCardDragPercent / wiget.cards.length)).clamp(0.0, 1.0 - (1/ widget.cards.length));
     });
   }
 
@@ -139,7 +139,7 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
     finishScrollStart = scrollPercent;
     // figure out where to animate to...
     // round up if over half; round down if under half
-    finishScrollEnd = (scrollPercent * numCards).round() / numCards;   
+    finishScrollEnd = (scrollPercent * widget.cards.length).round() / widget.cards.length;   
     finishScrollController.forward(from: 0.0);
 
 
@@ -150,11 +150,12 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
   }
 
   List<Widget> _buildCards() {
+    final cardCount = widget.cards.length;
     return [
       // index, count, percentscrolled
-      _buildCard(0, 3, scrollPercent),
-      _buildCard(1, 3, scrollPercent),
-      _buildCard(2, 3, scrollPercent),
+      _buildCard(0, cardCount, scrollPercent),
+      _buildCard(1, cardCount, scrollPercent),
+      _buildCard(2, cardCount, scrollPercent),
     ];
   }
   // get the card index and count of cards
