@@ -81,11 +81,17 @@ class _CardFlipperState extends State<CardFlipper> {
   }
   // get the card index and count of cards
   Widget _buildCard(int cardIndex, int cardCount, double scrollPercent) {
-      return FractionalTranslation(
-        // offset by 10% on the x-axis * cardIndex
-        translation: new Offset(0.1 * cardIndex, 0.0),
+    // calculate the cardscrollpercent
+    final cardScrollPercent = scrollPercent / (1 / cardCount);
+
+    return FractionalTranslation(
+      // offset by 10% on the x-axis * cardIndex
+      translation: new Offset(cardIndex - cardScrollPercent, 0.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: new Card(),
-      );
+      ),
+    );
   } 
 
   @override 
