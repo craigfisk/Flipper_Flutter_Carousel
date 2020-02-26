@@ -34,7 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      
       /*
       appBar: AppBar(
         title: Text('Ralph'),
@@ -163,10 +162,12 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
       return _buildCard(viewModel, index, cardCount, scrollPercent);
     }).toList();
   }
+
   // get the card index and count of cards
   Widget _buildCard(CardViewModel viewModel, int cardIndex, int cardCount, double scrollPercent) {
     // calculate the cardscrollpercent
     final cardScrollPercent = scrollPercent / (1 / cardCount);
+    final parallax = scrollPercent - (cardIndex / cardCount);
 
     return FractionalTranslation(
       // offset by 10% on the x-axis * cardIndex
@@ -175,6 +176,7 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
         padding: const EdgeInsets.all(16.0),
         child: new Card(
           viewModel: viewModel,
+          parallaxPercent: parallax,
         ),
       ),
     );
@@ -198,9 +200,11 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
 // One hard-coded card to work out the layout.
 class Card extends StatelessWidget {
   final CardViewModel viewModel;
+  final double parallaxPercent;
 
   Card({
     this.viewModel,
+    this.parallaxPercent = 0.0,
   });
 
 
@@ -212,11 +216,14 @@ class Card extends StatelessWidget {
         // background
         new ClipRRect(
           borderRadius: new BorderRadius.circular(10.0),
-          child: new Image.asset(
-            //'assets/van_on_beach.jpg',
-            viewModel.backdropAssetPath,
-            fit: BoxFit.cover,
-          ),
+          child: FractionalTranslation(
+            translation: new Offset(parallaxPercent * 2.0, 0.0),
+            child: new Image.asset(
+              //'assets/van_on_beach.jpg',
+              viewModel.backdropAssetPath,
+              fit: BoxFit.cover,
+            ),   
+          ),     
         ),
         new Column(
           mainAxisAlignment: MainAxisAlignment.start,
