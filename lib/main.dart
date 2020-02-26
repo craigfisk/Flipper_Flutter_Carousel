@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -69,7 +71,7 @@ class CardFlipper extends StatefulWidget{
   _CardFlipperState createState() => new _CardFlipperState();
 }
 
-class _CardFlipperState extends State<CardFlipper> {
+class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin {
   // items to always be tracing:
   double scrollPercent = 0.0;
   Offset startDrag;
@@ -77,6 +79,28 @@ class _CardFlipperState extends State<CardFlipper> {
   double finishScrollStart;
   double finishScrollEnd;
   AnimationController finishScrollController;
+
+  @override 
+  void initState() {
+    super.initState();
+
+    finishScrollController = new AnimationController(
+      duration: const Duration(milliseconds: 150),
+      vsync: this,
+    )
+    ..addListener(() {
+      setState(() {
+        // using built-in linear interpretation function lerpDouble()
+        scrollPercent = lerpDouble(finishScrollStart, finishScrollEnd, finishScrollController.value);  //TODO;
+      });
+     });
+  }
+
+  @override 
+  void dispose() {
+    finishScrollController.dispose();
+    super.dispose();
+  }
 
   void _onHorizontalDragStart(DragStartDetails details) {
     print('...starting horizontal drag...');
@@ -97,8 +121,18 @@ class _CardFlipperState extends State<CardFlipper> {
   }
 
   void _onHorizontalDragEnd(DragEndDetails details) {
+    final numCards = 3;
+
     print('...starting horizontal drag end...');
     // TODO
+    // start the animation from wherever the user ended their scrolling
+    finishScrollStart = scrollPercent;
+    // figure out where to animate to...
+    // round up if over half; round down if under half
+    finishScrollEnd = (scrollPercent * numCards).round() / numCards;   
+    finishScrollController.forward(from: 0.0);
+
+
     setState(() {
       startDrag = null;
       startDragPercentScroll = null;
