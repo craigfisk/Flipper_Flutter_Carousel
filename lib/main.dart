@@ -218,10 +218,13 @@ class Card extends StatelessWidget {
           borderRadius: new BorderRadius.circular(10.0),
           child: FractionalTranslation(
             translation: new Offset(parallaxPercent * 2.0, 0.0),
-            child: new Image.asset(
-              //'assets/van_on_beach.jpg',
-              viewModel.backdropAssetPath,
-              fit: BoxFit.cover,
+            child: OverflowBox(
+              maxWidth: double.infinity,
+              child: new Image.asset(
+                //'assets/van_on_beach.jpg',
+                viewModel.backdropAssetPath,
+                fit: BoxFit.cover,
+              ),
             ),   
           ),     
         ),
