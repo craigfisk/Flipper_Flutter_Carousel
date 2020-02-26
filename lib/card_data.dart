@@ -4,7 +4,7 @@
 
 final List<CardViewModel> demoCards = [
   new CardViewModel (
-    backdropAssetPath: '/assets/van_on_beach.jpg', 
+    backdropAssetPath: 'assets/van_on_beach.jpg', 
     address: '10TH STREET',
     minHeightInFeet: 2,
     maxHeightInFeet: 3,
@@ -14,7 +14,7 @@ final List<CardViewModel> demoCards = [
     cardinalDirection: 'ENE',
   ),
   new CardViewModel (
-    backdropAssetPath: '/assets/dusk_waves.jpg', 
+    backdropAssetPath: 'assets/dusk_waves.jpg', 
     address: '10TH STREET NORTH\N TO 14TH STREET NORTH',
     minHeightInFeet: 6,
     maxHeightInFeet: 7,
@@ -24,7 +24,7 @@ final List<CardViewModel> demoCards = [
     cardinalDirection: 'E',
   ),
   new CardViewModel (
-    backdropAssetPath: '/assets/board_walk.jpg', 
+    backdropAssetPath: 'assets/board_walk.jpg', 
     address: 'BELLS BEACH',
     minHeightInFeet: 3,
     maxHeightInFeet: 4,
