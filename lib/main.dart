@@ -50,7 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
           new Expanded(
           //  child: Padding(
           //    padding: const EdgeInsets.all(16.0),
-              child: new CardFlipper(),
+              child: new CardFlipper(
+                cards: demoCards,
+              ),
             ),
           //),
           
