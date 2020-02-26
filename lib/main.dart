@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
+import 'card_data.dart';
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   runApp(MyApp());
@@ -69,6 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class CardFlipper extends StatefulWidget{
+  final List<CardViewModel> cards;
+
+  CardFlipper({
+    this.cards;
+  });
+
   @override 
   _CardFlipperState createState() => new _CardFlipperState();
 }
