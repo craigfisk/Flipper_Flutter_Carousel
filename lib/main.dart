@@ -104,7 +104,7 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
     ..addListener(() {
       setState(() {
         // using built-in linear interpretation function lerpDouble()
-        scrollPercent = lerpDouble(finishScrollStart, finishScrollEnd, finishScrollController.value);  //TODO;
+        scrollPercent = lerpDouble(finishScrollStart, finishScrollEnd, finishScrollController.value);  
       });
      });
   }
@@ -127,17 +127,16 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
     final dragDistance = currDrag.dx - startDrag.dx;
     final singleCardDragPercent = dragDistance / context.size.width;
 
-    final numCards = 3;
+    //final numCards = 3;
     setState(() {
       scrollPercent = (startDragPercentScroll + (-singleCardDragPercent / widget.cards.length)).clamp(0.0, 1.0 - (1/ widget.cards.length));
     });
   }
 
   void _onHorizontalDragEnd(DragEndDetails details) {
-    final numCards = 3;
+    //final numCards = 3;
 
     print('...starting horizontal drag end...');
-    // TODO
     // start the animation from wherever the user ended their scrolling
     finishScrollStart = scrollPercent;
     // figure out where to animate to...
@@ -157,18 +156,14 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
 
     int index = -1;
     return widget.cards.map((CardViewModel viewModel) {
+      print('Current index is ' + index.toString());
       ++index;
-      return _buildCard(index, cardCount, scrollPercent);
+      print('Parameters: viewModel: '+viewModel.toString()+' index: '+index.toString()+' cardCount: '+cardCount.toString()+' scrollPercent: '+scrollPercent.toString() );
+      return _buildCard(viewModel, index, cardCount, scrollPercent);
     }).toList();
-    // return [
-    //   // index, count, percentscrolled
-    //   _buildCard(0, cardCount, scrollPercent),
-    //   _buildCard(1, cardCount, scrollPercent),
-    //   _buildCard(2, cardCount, scrollPercent),
-    // ];
   }
   // get the card index and count of cards
-  Widget _buildCard(int cardIndex, int cardCount, double scrollPercent) {
+  Widget _buildCard(CardViewModel viewModel, int cardIndex, int cardCount, double scrollPercent) {
     // calculate the cardscrollpercent
     final cardScrollPercent = scrollPercent / (1 / cardCount);
 
@@ -177,7 +172,9 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
       translation: new Offset(cardIndex - cardScrollPercent, 0.0),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: new Card(),
+        child: new Card(
+          viewModel: viewModel,
+        ),
       ),
     );
   } 
@@ -199,6 +196,13 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
 
 // One hard-coded card to work out the layout.
 class Card extends StatelessWidget {
+  final CardViewModel viewModel;
+
+  Card({
+    this.viewModel,
+  });
+
+
   @override 
   Widget build(BuildContext context) {
     return new Stack(
@@ -208,9 +212,8 @@ class Card extends StatelessWidget {
         new ClipRRect(
           borderRadius: new BorderRadius.circular(10.0),
           child: new Image.asset(
-            //'assets/board_walk.jpg',
-            //'assets/dusk_waves.jpg',
-            'assets/van_on_beach.jpg',
+            //'assets/van_on_beach.jpg',
+            viewModel.backdropAssetPath,
             fit: BoxFit.cover,
           ),
         ),
@@ -220,7 +223,8 @@ class Card extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
               child: new Text( 
-                '10th Street'.toUpperCase(),
+                //'10th Street'.toUpperCase(),
+                viewModel.address.toUpperCase(),
                 style: new TextStyle(
                   color: Colors.white, 
                   fontSize: 20.0, 
@@ -236,7 +240,8 @@ class Card extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 new Text(
-                  '2 - 3', 
+                  //'2 - 3',
+                  '${viewModel.minHeightInFeet} - ${viewModel.maxHeightInFeet}', 
                   style: new TextStyle(
                     color: Colors.white,
                     fontSize: 140.0,
@@ -268,7 +273,8 @@ class Card extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),
                   child: new Text(
-                    '65.1°',
+                    //'65.1',
+                    '${viewModel.tempInDegrees}',
                     style: new TextStyle(
                       color: Colors.white,
                       fontFamily: 'petita',
@@ -298,7 +304,8 @@ class Card extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       new Text(
-                        'Mostly Cloudy',
+                        //'Mostly cloudy',
+                        '${viewModel.weatherType}',
                         style: new TextStyle(
                           color: Colors.white,
                           fontFamily: 'petita',
@@ -314,7 +321,8 @@ class Card extends StatelessWidget {
                         ),
                       ),
                       new Text(
-                        '11.2mph ENE',
+                        //'11.3mph ENE',
+                        '${viewModel.windSpeedInMph}mph ${viewModel.cardinalDirection}',
                         style: new TextStyle(
                           color: Colors.white,
                           fontFamily: 'petita',
