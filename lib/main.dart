@@ -71,6 +71,18 @@ class CardFlipper extends StatefulWidget{
 
 class _CardFlipperState extends State<CardFlipper> {
 
+  void _onHorizontalDragStart(DragStartDetails details) {
+    print('...starting horizontal drag...');
+  }
+
+  void _onHorizontalDragUpdate(DragUpdateDetails details) {
+    print('...starting horizontal drag update drag...');
+  }
+
+  void _onHorizontalDragEnd(DragEndDetails details) {
+    print('...starting horizontal drag end...');
+  }
+
   List<Widget> _buildCards() {
     return [
       // index, count, percentscrolled
@@ -96,9 +108,15 @@ class _CardFlipperState extends State<CardFlipper> {
 
   @override 
   Widget build(BuildContext context) {
-    return new Stack(
-      // will return a list of cards in a stack
-      children: _buildCards(),
+    // surround the stack with a gesture detector
+    return GestureDetector( 
+      onHorizontalDragStart: _onHorizontalDragStart,
+      onHorizontalDragUpdate: _onHorizontalDragUpdate,
+      onHorizontalDragEnd: _onHorizontalDragEnd,
+      child: new Stack(
+        // will return a list of cards in a stack
+        children: _buildCards(),
+      )
     );
   }
 }
