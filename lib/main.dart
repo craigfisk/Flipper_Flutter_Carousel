@@ -59,11 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
 //          ),
           
           // bottom bar
-          new Container(
-            width: double.infinity,
-            height: 50.0,
-            color: Colors.grey,
-            ) 
+          // new Container(
+          //   width: double.infinity,
+          //   height: 50.0,
+          //   color: Colors.grey,
+          //   ) 
+          new BottomBar (
+            cardCount: demoCards.length,
+            scrollPercent: 0.0,
+          ),
+
           ],
         ),
       );
@@ -350,6 +355,49 @@ class Card extends StatelessWidget {
             ],
         ),
       ],
+    );
+  }
+}
+
+class BottomBar extends StatelessWidget {
+
+  final int cardCount;
+  final double scrollPercent;
+
+  BottomBar({
+    this.cardCount,
+    this.scrollPercent,
+  });
+
+  @override 
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+      child: new Row(
+        children: <Widget> [
+          new Expanded(
+            child: new Center(
+              child: new Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          new Expanded(
+            child: new Container(
+            ),
+          ),
+          new Expanded(
+            child: new Center(
+              child: new Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
+          ),
+
+        ],
+      ),
     );
   }
 }
