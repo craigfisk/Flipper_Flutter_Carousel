@@ -15,7 +15,7 @@ final List<CardViewModel> demoCards = [
   ),
   new CardViewModel (
     backdropAssetPath: 'assets/dusk_waves.jpg', 
-    address: '10TH STREET NORTH\N TO 14TH STREET NORTH',
+    address: '10TH STREET NORTH\n TO 14TH STREET NORTH',
     minHeightInFeet: 6,
     maxHeightInFeet: 7,
     tempInDegrees: 54.5,
