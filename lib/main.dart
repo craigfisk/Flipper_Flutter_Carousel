@@ -185,6 +185,10 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
     }).toList();
   }
 
+  Matrix4 _buildCardProjection(double scrollPercent) {
+    return new Matrix4.skew(0.2, 0.4);
+  }
+
   // get the card index and count of cards
   Widget _buildCard(CardViewModel viewModel, int cardIndex, int cardCount, double scrollPercent) {
     // calculate the cardscrollpercent
@@ -196,9 +200,12 @@ class _CardFlipperState extends State<CardFlipper> with TickerProviderStateMixin
       translation: new Offset(cardIndex - cardScrollPercent, 0.0),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: new Card(
-          viewModel: viewModel,
-          parallaxPercent: parallax,
+        child: new Transform(
+          transform: _buildCardProjection(cardScrollPercent - cardIndex),
+          child: new Card(
+            viewModel: viewModel,
+            parallaxPercent: parallax,
+          ),
         ),
       ),
     );
